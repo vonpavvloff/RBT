@@ -20,16 +20,6 @@ public class HexGridObject : MonoBehaviour {
 		}
 	}
 
-	public void move(HexDirection dir) {
-		HexGridCell c = cell;
-		HexGridCell c2 = c.grid.get(c.coordinates + dir);
-		if(c2 != null) {
-			Vector3 pos = this.transform.localPosition;
-			this.transform.parent = c2.transform;
-			this.transform.localPosition = pos;
-		}
-	}
-
 	public HexCoordinates coordinates {
 		get {
 			return cell.coordinates;

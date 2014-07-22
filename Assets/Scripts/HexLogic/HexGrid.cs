@@ -55,7 +55,7 @@ public class HexGrid : MonoBehaviour {
 			//		foreach(Renderer r in cell.GetComponentsInChildren<Renderer>())
 			//			r.enabled = true;
 			//}
-			foreach(HexGridCell cell in walker.cell.getVisibleCells(10))
+			foreach(HexGridCell cell in walker.cell.getVisibleCells(5))
 				foreach(Renderer r in cell.GetComponentsInChildren<Renderer>())
 					r.enabled = true;
 			curCoord = walker.coordinates;
