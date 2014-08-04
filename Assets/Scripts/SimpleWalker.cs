@@ -46,7 +46,8 @@ public class SimpleWalker : HexGridObject {
 					ratio = 1.0f;
 					canMove = true;
 				}
-				transform.position = prevCell.transform.position * (1.0f - ratio) + nextCell.transform.position * ratio;
+				Vector3 dy = new Vector3(0,transform.position.y,0);
+				transform.position = prevCell.transform.position * (1.0f - ratio) + nextCell.transform.position * ratio + dy;
 				if(wasLess05 && ratio >= 0.5)
 					transform.parent = nextCell.transform;
 			} else {

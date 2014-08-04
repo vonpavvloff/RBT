@@ -3,10 +3,16 @@ using System.Collections.Generic;
 
 public class HexGridCell : MonoBehaviour {
 
-	public HexGrid grid;
+	public HexGrid grid
+	{
+		get
+		{
+			return transform.parent.GetComponent<HexGrid>();
+		}
+	}
 	public HexCoordinates coordinates;
 
-	private bool isVisible(HexGridCell otherCell) {
+	public bool isVisible(HexGridCell otherCell) {
 		// Raycasting from current cell to the other cell
 		HexGridCell prev1 = null;
 		HexGridCell prev2 = null;

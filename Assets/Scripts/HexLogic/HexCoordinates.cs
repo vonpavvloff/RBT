@@ -1,23 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System; 
+using UnityEditor;
 
+[System.Serializable]
 public struct HexCoordinates {
 
-	private int _x;
-	private int _y;
-	
-	public int x {
-		get {
-			return _x;
-		}
-	}
-
-	public int y {
-		get {
-			return _y;
-		}
-	}
+	public int x;
+	public int y;
 
 	public int z {
 		get {
@@ -37,8 +27,8 @@ public struct HexCoordinates {
 	}
 	
 	public HexCoordinates(int xx, int yy) {
-		_x = xx;
-		_y = yy;
+		x = xx;
+		y = yy;
 	}
 
 	public override string ToString ()
@@ -98,7 +88,7 @@ public struct HexCoordinates {
 		return new Vector3(x,y,z);
 	}
 
-	private static HexCoordinates hexRound(Vector3 v) {
+	public static HexCoordinates hexRound(Vector3 v) {
 		int rx = Mathf.RoundToInt(v.x);
 		int ry = Mathf.RoundToInt(v.y);
 		int rz = Mathf.RoundToInt(v.z);
@@ -308,9 +298,16 @@ public struct HexCoordinates {
 		return x.GetHashCode() + y.GetHashCode() + z.GetHashCode();
 	}
 
-	public Vector2 to2D() {
+	public Vector3 to2D() {
 		float xx = x - (y + z) / 2.0f;
-		float yy = (y - z) * Mathf.Sqrt(3f) / 2.0f;
-		return new Vector2(xx,yy);
+		float zz = (y - z) * Mathf.Sqrt(3f) / 2.0f;
+		return new Vector3(xx,0,zz);
+	}
+
+	public static HexCoordinates from2D(Vector3 pp) {
+		float x = pp.x * 2 / 3;
+		float y = pp.z / Mathf.Sqrt(3f) - pp.x / 3f;
+		return hexRound(new Vector3(x,y,-x-y));
 	}
 }
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class HexGridObject : MonoBehaviour {
 
+	public bool alwaysVisible = false;
 	public HexObstacle visibility;
 	public HexObstacle moveability;
 
